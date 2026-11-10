@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html data-theme="dark" lang="en" class="scroll-smooth dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Contact Us | VR Galaxy – Virtual Reality Gaming Lounge</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎮%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+    <meta name="description" content="Get in touch with VR Galaxy. Find our location, opening hours, or send us a message to book your VR session.">
+
+    <!-- Tailwind CSS + Fonts -->
+     <script src="tailwind.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'vr': {
+                            'dark': '#050510',
+                            'panel': '#0B0C1B',
+                            'primary': '#8B5CF6',
+                            'secondary': '#22D3EE',
+                            'accent': '#F43F5E',
+                            'text': '#F8FAFC',
+                            'muted': '#94A3B8',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Orbitron', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+                        pulseGlow: { '0%, 100%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.4)' }, '50%': { boxShadow: '0 0 40px rgba(139, 92, 246, 0.8)' } },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050510;
+            color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        body::-webkit-scrollbar { width: 8px; }
+        body::-webkit-scrollbar-track { background: #0B0C1B; }
+        body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8B5CF6, #22D3EE); border-radius: 10px; }
+
+        .font-display { font-family: 'Orbitron', sans-serif; }
+        
+        .text-gradient {
+            background: linear-gradient(to right, #22D3EE, #8B5CF6, #F43F5E);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .neon-border {
+            position: relative;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        .neon-border:hover {
+            border-color: #22D3EE;
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+        }
+
+        .glass-panel {
+            background: rgba(11, 12, 27, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+            color: white;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.7);
+        }
+
+        .btn-outline {
+            border: 2px solid #22D3EE;
+            color: #22D3EE;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover {
+            background: rgba(34, 211, 238, 0.1);
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+        }
+
+        .nav-link { position: relative; color: #94A3B8; transition: color 0.3s; }
+        .nav-link:hover, .nav-link.active { color: #22D3EE; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: #22D3EE; transition: width 0.3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        [dir="rtl"] .nav-link::after { left: auto; right: 0; }
+
+        .hero-bg {
+            background: radial-gradient(circle at 50% 50%, #0B0C1B 0%, #050510 100%);
+            position: relative;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(34, 211, 238, 0.15) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        /* Contact Card Hover */
+        .contact-card {
+            background: rgba(11, 12, 27, 0.7);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 1.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #8B5CF6, #22D3EE);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .contact-card:hover::before { transform: scaleX(1); }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: #22D3EE;
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.15);
+        }
+
+        /* Form Input */
+        .form-input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border-radius: 0.85rem;
+            background: #050510;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            font-size: 0.875rem;
+            color: white;
+            transition: all 0.25s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #22D3EE;
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+        }
+        .form-input::placeholder { color: #64748B; }
+        .form-label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #94A3B8;
+            margin-bottom: 0.4rem;
+        }
+
+        /* Map Wrapper */
+        .map-wrapper {
+            position: relative;
+            border-radius: 1.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 25px 50px -25px rgba(0,0,0,0.5);
+        }
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(100%) invert(92%) contrast(83%);
+        }
+
+        /* Hours Table */
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.85rem 0;
+            border-bottom: 1px dashed rgba(139, 92, 246, 0.2);
+            transition: all 0.25s ease;
+        }
+        .hours-row:last-child { border-bottom: none; }
+        .hours-row:hover {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            background: rgba(139, 92, 246, 0.05);
+            border-radius: 0.5rem;
+        }
+        .hours-row.today {
+            background: rgba(34, 211, 238, 0.1);
+            border-radius: 0.5rem;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            border-bottom-color: transparent;
+        }
+
+        [dir="rtl"] .fa-arrow-right { transform: scaleX(-1); }
+
+        [dir="rtl"] .fa-chevron-right { transform: scaleX(-1); }
+
+        .mobile-drawer {
+            left: 0;
+            right: auto;
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-drawer.open { transform: translateX(0); }
+        [dir="rtl"] .mobile-drawer {
+            left: auto !important;
+            right: 0 !important;
+            transform: translateX(100%);
+            border-right: none !important;
+            border-left: 1px solid rgba(139, 92, 246, 0.3) !important;
+        }
+        [dir="rtl"] .mobile-drawer.open { transform: translateX(0); }
+
+        [dir="rtl"] .group .absolute.left-0 {
+            left: auto;
+            right: 0;
+        }
+        [dir="rtl"] .group .absolute.right-0 {
+            right: auto;
+            left: 0;
+        }
+    
+        /* ================= LIGHT THEME STYLES ================= */
+        html:not(.dark) {
+            color-scheme: light;
+        }
+        html:not(.dark) body {
+            background-color: #F8FAFC !important;
+            color: #0F172A !important;
+        }
+        html:not(.dark) .bg-vr-dark {
+            background-color: #F8FAFC !important;
+        }
+        html:not(.dark) .bg-vr-panel {
+            background-color: #FFFFFF !important;
+            border-color: rgba(139, 92, 246, 0.15) !important;
+            box-shadow: 0 4px 20px -2px rgba(139, 92, 246, 0.08) !important;
+        }
+        html:not(.dark) .glass-panel {
+            background: rgba(255, 255, 255, 0.9) !important;
+            border-color: rgba(139, 92, 246, 0.15) !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
+        }
+        html:not(.dark) header {
+            background-color: rgba(255, 255, 255, 0.92) !important;
+            border-color: rgba(139, 92, 246, 0.15) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
+        }
+        html:not(.dark) .hero-bg {
+            background: radial-gradient(circle at 50% 50%, #EDE9FE 0%, #F8FAFC 100%) !important;
+        }
+        html:not(.dark) .hero-bg::before {
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(34, 211, 238, 0.08) 0%, transparent 40%) !important;
+        }
+        html:not(.dark) .hero-bg::after {
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.06) 1px, transparent 1px) !important;
+        }
+        html:not(.dark) h1:not([class*="bg-gradient"] *):not(.btn-primary *),
+        html:not(.dark) h2:not([class*="bg-gradient"] *):not(.btn-primary *),
+        html:not(.dark) h3:not([class*="bg-gradient"] *):not(.btn-primary *),
+        html:not(.dark) h4:not([class*="bg-gradient"] *):not(.btn-primary *),
+        html:not(.dark) h5:not([class*="bg-gradient"] *):not(.btn-primary *),
+        html:not(.dark) h6:not([class*="bg-gradient"] *):not(.btn-primary *) {
+            color: #0F172A !important;
+        }
+        html:not(.dark) .text-white:not(.btn-primary):not(.btn-primary *):not([class*="bg-gradient"]):not([class*="bg-gradient"] *):not([style*="background:linear-gradient"]):not([style*="background: linear-gradient"]):not([style*="background:linear-gradient"] *):not([style*="background: linear-gradient"] *):not(.status-badge) {
+            color: #0F172A !important;
+        }
+        html:not(.dark) .text-vr-muted {
+            color: #475569 !important;
+        }
+        html:not(.dark) .text-vr-secondary:not(header .text-vr-secondary):not(#drawerContent .text-vr-secondary):not(footer .text-vr-secondary) {
+            color: #0891B2 !important;
+        }
+        html:not(.dark) .btn-outline {
+            border-color: #0891B2 !important;
+            color: #0891B2 !important;
+        }
+        html:not(.dark) .btn-outline:hover {
+            background: rgba(8, 145, 178, 0.1) !important;
+            box-shadow: 0 0 15px rgba(8, 145, 178, 0.25) !important;
+        }
+        html:not(.dark) .contact-card {
+            background: #FFFFFF !important;
+            border-color: rgba(139, 92, 246, 0.2) !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06) !important;
+        }
+        html:not(.dark) .contact-card:hover {
+            border-color: #0891B2 !important;
+            box-shadow: 0 15px 30px -5px rgba(8, 145, 178, 0.15) !important;
+        }
+        html:not(.dark) .bg-vr-panel\/95 {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+        }
+        html:not(.dark) .form-label {
+            color: #334155 !important;
+        }
+        html:not(.dark) .hours-row.today {
+            background: rgba(8, 145, 178, 0.1) !important;
+        }
+        html:not(.dark) a.hover\:text-white:hover {
+            color: #0F172A !important;
+        }
+        html:not(.dark) .nav-link {
+            color: #475569 !important;
+        }
+        html:not(.dark) .nav-link:hover,
+        html:not(.dark) .nav-link.active {
+            color: #7C3AED !important;
+        }
+        html:not(.dark) #themeToggle,
+        html:not(.dark) #themeToggleMobile,
+        html:not(.dark) #rtlToggle,
+        html:not(.dark) #rtlToggleMobile {
+            background-color: #F1F5F9 !important;
+            color: #7C3AED !important;
+            border: 1px solid rgba(139, 92, 246, 0.2) !important;
+        }
+        html:not(.dark) #themeToggle:hover,
+        html:not(.dark) #rtlToggle:hover {
+            background-color: #EDE9FE !important;
+        }
+        html:not(.dark) #drawerContent {
+            background-color: #FFFFFF !important;
+            border-color: rgba(139, 92, 246, 0.15) !important;
+        }
+        html:not(.dark) #drawerContent a.text-vr-muted,
+        html:not(.dark) #drawerContent button.text-vr-muted {
+            color: #475569 !important;
+        }
+        html:not(.dark) #drawerContent a.text-vr-muted:hover,
+        html:not(.dark) #drawerContent button.text-vr-muted:hover {
+            background-color: rgba(139, 92, 246, 0.08) !important;
+            color: #7C3AED !important;
+        }
+        html:not(.dark) .border-vr-primary\/20,
+        html:not(.dark) .border-vr-primary\/10,
+        html:not(.dark) .border-vr-primary\/30 {
+            border-color: rgba(139, 92, 246, 0.15) !important;
+        }
+        html:not(.dark) footer {
+            background-color: #F1F5F9 !important;
+            border-color: rgba(139, 92, 246, 0.15) !important;
+        }
+        html:not(.dark) body::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        html:not(.dark) input,
+        html:not(.dark) textarea,
+        html:not(.dark) select {
+            background-color: #FFFFFF !important;
+            color: #0F172A !important;
+            border-color: #CBD5E1 !important;
+        }
+
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-vr-dark/90 backdrop-blur-md border-b border-vr-primary/20">
+        <nav class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-105" style="background:linear-gradient(135deg,#8B5CF6,#22D3EE);">
+                        <i class="fas fa-vr-cardboard text-xl text-white"></i>
+                    </div>
+                    <div class="flex flex-col leading-none">
+                        <span class="font-display text-xl font-bold tracking-wider text-white">VR <span class="text-vr-secondary">GALAXY</span></span>
+                        <span class="text-[9px] tracking-widest uppercase font-semibold text-vr-muted mt-0.5">Gaming Lounge</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden xl:flex items-center gap-8">
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1 font-medium text-sm py-2">
+                            Home <i class="fas fa-chevron-down text-[10px]"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-40 bg-vr-panel border border-vr-primary/30 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
+                            <a href="index.html" class="block px-4 py-3 text-sm text-white hover:bg-vr-primary/20 transition">Home 1</a>
+                            <a href="home2.html" class="block px-4 py-3 text-sm text-white hover:bg-vr-primary/20 border-t border-vr-primary/10 transition">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="nav-link font-medium text-sm py-2">About</a>
+                    <a href="games.html" class="nav-link font-medium text-sm py-2">Games Library</a>
+                    <a href="pricing.html" class="nav-link font-medium text-sm py-2">Pricing</a>
+                    <a href="contact.html" class="nav-link active font-medium text-sm py-2">Contact</a>
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1 font-medium text-sm py-2">
+                            Dashboard <i class="fas fa-chevron-down text-[10px]"></i>
+                        </button>
+                        <div class="absolute top-full right-0 mt-2 w-40 bg-vr-panel border border-vr-primary/30 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
+                            <a href="admin.html" class="block px-4 py-3 text-sm text-white hover:bg-vr-primary/20 transition"><i class="fas fa-user-shield w-5 text-vr-primary"></i> Admin</a>
+                            <a href="customer.html" class="block px-4 py-3 text-sm text-white hover:bg-vr-primary/20 border-t border-vr-primary/10 transition"><i class="fas fa-user w-5 text-vr-secondary"></i> Customer</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="hidden xl:flex items-center gap-4">
+                    <button id="themeToggle" class="w-9 h-9 rounded-full bg-vr-panel flex items-center justify-center text-vr-secondary hover:bg-vr-primary/20 transition">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="rtlToggle" class="w-9 h-9 rounded-full bg-vr-panel flex items-center justify-center text-vr-secondary hover:bg-vr-primary/20 transition">
+                        <i class="fas fa-exchange-alt"></i>
+                    </button>
+                    <a href="login.html" class="text-sm font-semibold text-white hover:text-vr-secondary transition">Log In</a>
+                    <a href="signup.html" class="btn-primary px-5 py-2.5 rounded-full text-sm font-bold">Sign Up</a>
+                </div>
+
+                <!-- Mobile Toggle -->
+                <div class="xl:hidden flex items-center gap-2">
+                    <button id="mobileMenuBtn" class="w-10 h-10 flex items-center justify-center text-white text-xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ================= MOBILE DRAWER ================= -->
+    <div id="mobileDrawer" class="fixed inset-0 z-[100] pointer-events-none xl:hidden overflow-hidden">
+        <div id="drawerBackdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        <div id="drawerContent" class="mobile-drawer absolute top-0 left-0 h-full w-80 max-w-[85vw] bg-vr-panel shadow-2xl border-r border-vr-primary/30 overflow-y-auto">
+            <div class="p-5">
+                <div class="flex justify-between items-center mb-8">
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-105 shrink-0" style="background:linear-gradient(135deg,#8B5CF6,#22D3EE);">
+                            <i class="fas fa-vr-cardboard text-xl text-white"></i>
+                        </div>
+                        <div class="flex flex-col leading-none">
+                            <span class="font-display text-xl font-bold tracking-wider text-white">VR <span class="text-vr-secondary">GALAXY</span></span>
+                            <span class="text-[9px] tracking-widest uppercase font-semibold text-vr-muted mt-0.5">Gaming Lounge</span>
+                        </div>
+                    </a>
+                    <button id="closeDrawer" class="text-vr-muted hover:text-white transition"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                
+                <div class="space-y-2">
+                    <div>
+                        <button type="button" id="mobileHomeBtn" class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm" aria-expanded="false">
+                            <span>Home</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="mobileHomeMenu" class="hidden mt-1 ms-4 ps-3 border-s border-vr-primary/20 space-y-1">
+                            <a href="index.html" class="block px-4 py-2.5 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm">Home 1</a>
+                            <a href="home2.html" class="block px-4 py-2.5 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="block px-4 py-3 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm">About</a>
+                    <a href="games.html" class="block px-4 py-3 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm">Games Library</a>
+                    <a href="pricing.html" class="block px-4 py-3 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm">Pricing</a>
+                    <a href="contact.html" class="block px-4 py-3 rounded-xl bg-vr-primary/20 text-vr-secondary font-semibold text-sm">Contact</a>
+                    
+                    <div class="pt-4 mt-4 border-t border-vr-primary/20">
+                        <button type="button" id="mobileDashboardBtn" class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm" aria-expanded="false">
+                            <span>Dashboard</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="mobileDashboardMenu" class="hidden mt-1 ms-4 ps-3 border-s border-vr-primary/20 space-y-1">
+                            <a href="admin.html" class="block px-4 py-2.5 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm"><i class="fas fa-user-shield w-6 text-vr-primary"></i> Admin</a>
+                            <a href="customer.html" class="block px-4 py-2.5 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm"><i class="fas fa-user w-6 text-vr-secondary"></i> Customer</a>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 mt-4 border-t border-vr-primary/20 flex flex-col gap-3">
+                        <button id="themeToggleMobile" class="flex items-center justify-between px-4 py-3 rounded-xl bg-vr-dark text-vr-muted text-sm font-medium">
+                            <span>Toggle Theme</span> <i class="fas fa-moon text-vr-secondary"></i>
+                        </button>
+                        <button id="rtlToggleMobile" class="flex items-center justify-between px-4 py-3 rounded-xl bg-vr-dark text-vr-muted text-sm font-medium">
+                            <span>Toggle RTL</span> <i class="fas fa-exchange-alt text-vr-secondary"></i>
+                        </button>
+                        <a href="login.html" class="text-center px-4 py-3 rounded-xl border border-vr-primary/30 text-white text-sm font-semibold hover:border-vr-secondary transition">Log In</a>
+                        <a href="signup.html" class="text-center btn-primary px-4 py-3 rounded-xl text-sm font-bold">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SECTION 1: HERO ================= -->
+    <section class="hero-bg relative min-h-[60vh] flex items-center pt-24 overflow-hidden">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
+            <div class="max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-vr-primary/40 bg-vr-primary/10 mb-6 backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-vr-accent animate-pulse"></span>
+                    <span class="text-xs font-bold tracking-widest uppercase text-vr-secondary">Get in Touch</span>
+                </div>
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+                    Let's Connect <br>
+                    <span class="text-gradient">& Play.</span>
+                </h1>
+                <p class="text-vr-muted text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+                    Questions about our games, bookings, or hosting an event? Our team is ready to help you jump into the galaxy.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECTION 2: CONTACT INFORMATION ================= -->
+    <section class="py-20 bg-vr-dark border-t border-vr-primary/10">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-vr-primary text-xs font-bold tracking-[0.2em] uppercase block mb-3">Reach Us</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+                    Contact <span class="text-vr-secondary">Information</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Phone -->
+                <div class="contact-card p-8 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 bg-vr-secondary/10">
+                        <i class="fas fa-phone text-2xl text-vr-secondary"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white mb-2">Call Us</h3>
+                    <p class="text-sm text-vr-muted mb-4">Speak directly with our front desk.</p>
+                    <a href="tel:+15551234567" class="text-lg font-bold text-vr-secondary hover:text-white transition mb-1">(555) 123-4567</a>
+                    <p class="text-[10px] uppercase tracking-widest text-vr-muted">Mon–Sun · 10am – 11pm</p>
+                </div>
+
+                <!-- Email -->
+                <div class="contact-card p-8 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 bg-vr-primary/10">
+                        <i class="fas fa-envelope text-2xl text-vr-primary"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white mb-2">Email Us</h3>
+                    <p class="text-sm text-vr-muted mb-4">For bookings, events, or general questions.</p>
+                    <a href="mailto:play@vrgalaxy.com" class="text-sm font-bold text-vr-primary hover:text-white transition mb-1 break-all">play@vrgalaxy.com</a>
+                    <p class="text-[10px] uppercase tracking-widest text-vr-muted">Response within 24 hours</p>
+                </div>
+
+                <!-- Address -->
+                <div class="contact-card p-8 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 bg-vr-accent/10">
+                        <i class="fas fa-map-marker-alt text-2xl text-vr-accent"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-white mb-2">Visit Us</h3>
+                    <p class="text-sm text-vr-muted mb-4">Located in the heart of the Cyber District.</p>
+                    <p class="text-sm font-bold text-vr-accent mb-1">42 Nebula Boulevard</p>
+                    <p class="text-xs text-vr-muted">Cyber District, NY 10001</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECTION 3: SEND US AN ENQUIRY ================= -->
+    <section class="py-20 bg-vr-panel border-t border-vr-primary/10">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+                
+                <!-- Left: Info -->
+                <div class="lg:col-span-5">
+                    <span class="text-vr-secondary text-xs font-bold tracking-[0.2em] uppercase block mb-3">Message Us</span>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                        Send Us an <br>
+                        <span class="text-vr-primary">Enquiry.</span>
+                    </h2>
+                    <p class="text-vr-muted text-base mb-8">
+                        Whether you want to book a private party, ask about our games, or just say hi, fill out the form and we'll get back to you.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-vr-dark border border-vr-primary/20">
+                            <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 bg-vr-secondary/10">
+                                <i class="fas fa-shield-heart text-vr-secondary text-sm"></i>
+                            </div>
+                            <p class="text-xs text-vr-muted"><strong class="text-white">Safe & Secure:</strong> Your information is protected and never shared.</p>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-vr-dark border border-vr-primary/20">
+                            <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 bg-vr-primary/10">
+                                <i class="fas fa-clock text-vr-primary text-sm"></i>
+                            </div>
+                            <p class="text-xs text-vr-muted"><strong class="text-white">Fast Response:</strong> We typically reply within a few hours during business hours.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Form -->
+                <div class="lg:col-span-7">
+                    <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-vr-primary/30">
+                        <form class="space-y-5" onsubmit="event.preventDefault(); this.reset(); alert('Thank you! Your message has been sent. We\'ll get back to you shortly.');">
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="form-label">First Name *</label>
+                                    <input type="text" required placeholder="John" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="form-label">Last Name *</label>
+                                    <input type="text" required placeholder="Doe" class="form-input">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="form-label">Email Address *</label>
+                                    <input type="email" required placeholder="you@email.com" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" placeholder="(555) 000-0000" class="form-input">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="form-label">Subject</label>
+                                <select class="form-input">
+                                    <option>General Question</option>
+                                    <option>Booking Request</option>
+                                    <option>Birthday Party / Event</option>
+                                    <option>Corporate Team Building</option>
+                                    <option>Feedback</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="form-label">Your Message *</label>
+                                <textarea rows="5" required placeholder="Please let us know how we can help..." class="form-input resize-y"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary w-full py-3.5 rounded-xl font-bold text-sm">
+                                <i class="fas fa-paper-plane mr-2"></i> Send Message
+                            </button>
+
+                            <p class="text-[10px] text-center text-vr-muted">
+                                <i class="fas fa-lock mr-1"></i> Your information is secure and confidential.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECTION 4: OUR GAMING LOUNGE LOCATION ================= -->
+    <section class="py-20 bg-vr-dark border-t border-vr-primary/10">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+                <div class="max-w-2xl">
+                    <span class="text-vr-secondary text-xs font-bold tracking-[0.2em] uppercase block mb-3">Find Us</span>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-white font-bold leading-tight">
+                        Our Gaming Lounge <span class="text-vr-primary">Location.</span>
+                    </h2>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-vr-panel border border-vr-primary/20">
+                        <i class="fas fa-train text-vr-primary text-sm"></i>
+                        <span class="text-xs font-semibold text-white">5 min from Metro</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-vr-panel border border-vr-primary/20">
+                        <i class="fas fa-square-parking text-vr-secondary text-sm"></i>
+                        <span class="text-xs font-semibold text-white">Free Parking</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-wrapper h-[400px] sm:h-[480px] lg:h-[520px]">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878459418!3d40.74076497932836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf5c1654f3%3A0xc80f9cfce5383d5d!2sGoogle!5e0!3m2!1sen!2sus!4v1690000000000!5m2!1sen!2sus"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="VR Galaxy Location">
+                </iframe>
+                <div class="absolute bottom-5 left-5 bg-vr-panel/95 backdrop-blur-md rounded-xl p-4 shadow-xl max-w-[calc(100%-2.5rem)] border border-vr-primary/30">
+                    <div class="flex items-start gap-3">
+                        <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#8B5CF6,#22D3EE);">
+                            <i class="fas fa-vr-cardboard text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <p class="font-display font-bold text-sm text-white">VR Galaxy Lounge</p>
+                            <p class="text-xs text-vr-muted mt-0.5">42 Nebula Boulevard<br>Cyber District, NY 10001</p>
+                            <a href="https://maps.google.com/?q=42+Nebula+Boulevard+Cyber+District+NY" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 mt-2 text-[10px] font-bold uppercase tracking-widest text-vr-secondary hover:text-white transition">
+                                Get Directions <i class="fas fa-arrow-up-right-from-square text-[9px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECTION 5: OPENING HOURS ================= -->
+    <section class="py-20 bg-vr-panel border-t border-vr-primary/10">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+                
+                <!-- Left: Info -->
+                <div class="lg:col-span-5">
+                    <span class="text-vr-primary text-xs font-bold tracking-[0.2em] uppercase block mb-3">Plan Your Visit</span>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-white font-bold mb-6 leading-tight">
+                        Opening <br>
+                        <span class="text-vr-secondary">Hours.</span>
+                    </h2>
+                    <p class="text-vr-muted text-base mb-8">
+                        We are open 7 days a week. We recommend booking in advance on weekends, but walk-ins are always welcome.
+                    </p>
+
+                    <div class="flex items-center gap-3 p-4 rounded-xl bg-vr-dark border border-vr-primary/20">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 bg-vr-primary/10">
+                            <i class="fas fa-calendar-check text-vr-primary text-sm"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-white">Online Booking Available</p>
+                            <p class="text-[10px] text-vr-muted">Schedule 24/7 through our website</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Hours -->
+                <div class="lg:col-span-7">
+                    <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-vr-primary/30">
+                        <div class="flex items-center justify-between mb-4 pb-3 border-b border-vr-primary/20">
+                            <h3 class="font-display text-lg font-bold text-white">Lounge Hours</h3>
+                            <span class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-vr-secondary">
+                                <span class="w-1.5 h-1.5 rounded-full bg-vr-secondary animate-pulse"></span> Open Today
+                            </span>
+                        </div>
+
+                        <div class="hours-row today">
+                            <span class="text-sm font-semibold text-white">Monday</span>
+                            <span class="text-sm font-bold text-vr-secondary">10:00 AM – 11:00 PM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="text-sm font-semibold text-white">Tuesday</span>
+                            <span class="text-sm text-vr-muted">10:00 AM – 11:00 PM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="text-sm font-semibold text-white">Wednesday</span>
+                            <span class="text-sm text-vr-muted">10:00 AM – 11:00 PM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="text-sm font-semibold text-white">Thursday</span>
+                            <span class="text-sm text-vr-muted">10:00 AM – 11:00 PM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="text-sm font-semibold text-white">Friday</span>
+                            <span class="text-sm text-vr-muted">10:00 AM – 12:00 AM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="text-sm font-semibold text-white">Saturday</span>
+                            <span class="text-sm text-vr-muted">9:00 AM – 12:00 AM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="text-sm font-semibold text-white">Sunday</span>
+                            <span class="text-sm text-vr-muted">9:00 AM – 10:00 PM</span>
+                        </div>
+
+                        <div class="mt-6 pt-5 border-t border-vr-primary/20 flex items-start gap-3">
+                            <i class="fas fa-circle-info text-vr-secondary mt-0.5 text-sm"></i>
+                            <p class="text-xs text-vr-muted leading-relaxed">
+                                <strong class="text-white">Holiday hours may vary.</strong> Please call ahead or check our social media for updates during holidays.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECTION 6: BOOK YOUR VR SESSION ================= -->
+    <section class="py-20 bg-vr-dark border-t border-vr-primary/10 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-vr-primary/10 to-transparent pointer-events-none"></div>
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-white font-bold mb-6">
+                    Ready to <span class="text-gradient">Jump In?</span>
+                </h2>
+                <p class="text-vr-muted text-base mb-10">
+                    Don't miss out on the ultimate VR experience. Secure your pod today.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="pricing.html" class="btn-primary px-8 py-3.5 rounded-full text-sm font-bold inline-flex items-center justify-center gap-2">
+                        <i class="fas fa-ticket-alt"></i> Book Your VR Session
+                    </a>
+                    <a href="games.html" class="btn-outline px-8 py-3.5 rounded-full text-sm font-bold inline-flex items-center justify-center gap-2">
+                        <i class="fas fa-gamepad"></i> Explore Games
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-black pt-16 pb-8 border-t border-vr-primary/20 text-sm">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <a href="index.html" class="flex items-center gap-3 mb-6 group">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-105 shrink-0" style="background:linear-gradient(135deg,#8B5CF6,#22D3EE);">
+                            <i class="fas fa-vr-cardboard text-xl text-white"></i>
+                        </div>
+                        <div class="flex flex-col leading-none">
+                            <span class="font-display text-xl font-bold tracking-wider text-white">VR <span class="text-vr-secondary">GALAXY</span></span>
+                            <span class="text-[9px] tracking-widest uppercase font-semibold text-vr-muted mt-0.5">Gaming Lounge</span>
+                        </div>
+                    </a>
+                    <p class="text-vr-muted mb-6">The ultimate virtual reality gaming lounge. Immerse yourself in next-gen entertainment.</p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-9 h-9 rounded-full bg-vr-panel flex items-center justify-center text-vr-muted hover:text-vr-secondary transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-vr-panel flex items-center justify-center text-vr-muted hover:text-vr-secondary transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-vr-panel flex items-center justify-center text-vr-muted hover:text-vr-secondary transition"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-vr-panel flex items-center justify-center text-vr-muted hover:text-vr-secondary transition"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-display font-bold text-white mb-4 uppercase tracking-wider text-xs">Explore</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-vr-muted hover:text-vr-secondary transition">Home 1</a></li>
+                        <li><a href="home2.html" class="text-vr-muted hover:text-vr-secondary transition">Home 2</a></li>
+                        <li><a href="about.html" class="text-vr-muted hover:text-vr-secondary transition">About Us</a></li>
+                        <li><a href="games.html" class="text-vr-muted hover:text-vr-secondary transition">Games Library</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display font-bold text-white mb-4 uppercase tracking-wider text-xs">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="pricing.html" class="text-vr-muted hover:text-vr-secondary transition">Pricing & Booking</a></li>
+                        <li><a href="contact.html" class="text-vr-muted hover:text-vr-secondary transition">Contact Us</a></li>
+                        <li><a href="#" class="text-vr-muted hover:text-vr-secondary transition">FAQ</a></li>
+                        <li><a href="#" class="text-vr-muted hover:text-vr-secondary transition">Safety Guidelines</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display font-bold text-white mb-4 uppercase tracking-wider text-xs">Visit Us</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 text-vr-muted">
+                            <i class="fas fa-map-marker-alt mt-1 text-vr-primary"></i>
+                            <span>42 Nebula Boulevard, <br>Cyber District, NY 10001</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-vr-muted">
+                            <i class="fas fa-clock text-vr-primary"></i>
+                            <span>Mon–Sun: 10am – 11pm</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-vr-muted">
+                            <i class="fas fa-envelope text-vr-primary"></i>
+                            <span>play@vrgalaxy.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-vr-primary/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-vr-muted">
+                <p>&copy; 2026 VR Galaxy. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+                        // Theme Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const themeToggleMobile = document.getElementById('themeToggleMobile');
+            
+            function setTheme(isDark) {
+                if (isDark) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+                [themeToggle, themeToggleMobile].forEach(btn => {
+                    if (btn) {
+                        const icon = btn.querySelector('i');
+                        if (icon) {
+                            const extra = btn.id === 'themeToggleMobile' ? ' text-vr-secondary' : '';
+                            icon.className = (isDark ? 'fas fa-sun' : 'fas fa-moon') + extra;
+                        }
+                    }
+                });
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            }
+
+            const savedTheme = localStorage.getItem('theme');
+            setTheme(savedTheme ? savedTheme === 'dark' : true);
+
+            if (themeToggle) themeToggle.addEventListener('click', () => setTheme(!document.documentElement.classList.contains('dark')));
+            if (themeToggleMobile) themeToggleMobile.addEventListener('click', () => setTheme(!document.documentElement.classList.contains('dark')));
+
+// RTL Toggle
+            const rtlToggle = document.getElementById('rtlToggle');
+            const rtlToggleMobile = document.getElementById('rtlToggleMobile');
+            
+            function setRTL(isRTL) {
+                document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+                localStorage.setItem('direction', isRTL ? 'rtl' : 'ltr');
+                localStorage.setItem('dir', isRTL ? 'rtl' : 'ltr');
+            }
+
+            const savedDir = localStorage.getItem('direction') || localStorage.getItem('dir');
+            setRTL(savedDir === 'rtl');
+
+            if (rtlToggle) rtlToggle.addEventListener('click', () => setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+            if (rtlToggleMobile) rtlToggleMobile.addEventListener('click', () => setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+
+            // Mobile Drawer
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileDrawer = document.getElementById('mobileDrawer');
+            const drawerContent = document.getElementById('drawerContent');
+            const drawerBackdrop = document.getElementById('drawerBackdrop');
+            const closeDrawer = document.getElementById('closeDrawer');
+
+            function openDrawer() {
+                mobileDrawer.classList.remove('pointer-events-none');
+                drawerContent.classList.add('open');
+                drawerBackdrop.classList.add('opacity-100', 'pointer-events-auto');
+                drawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function hideDrawer() {
+                drawerContent.classList.remove('open');
+                drawerBackdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                drawerBackdrop.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    mobileDrawer.classList.add('pointer-events-none');
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+
+            if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openDrawer);
+            if (closeDrawer) closeDrawer.addEventListener('click', hideDrawer);
+            if (drawerBackdrop) drawerBackdrop.addEventListener('click', hideDrawer);
+
+            // Mobile Drawer Dropdowns (Home & Dashboard)
+            function setupMobileDropdown(btnId, menuId) {
+                const btn = document.getElementById(btnId);
+                const menu = document.getElementById(menuId);
+                if (!btn || !menu) return;
+                btn.addEventListener('click', () => {
+                    const isHidden = menu.classList.toggle('hidden');
+                    btn.setAttribute('aria-expanded', String(!isHidden));
+                    const chevron = btn.querySelector('.fa-chevron-down');
+                    if (chevron) chevron.classList.toggle('rotate-180', !isHidden);
+                });
+            }
+            setupMobileDropdown('mobileHomeBtn', 'mobileHomeMenu');
+            setupMobileDropdown('mobileDashboardBtn', 'mobileDashboardMenu');
+
+            // Desktop Dropdown click toggle support
+            document.querySelectorAll('header nav .relative.group').forEach(group => {
+                const btn = group.querySelector('button.nav-link');
+                const menu = group.querySelector('div.absolute');
+                if (!btn || !menu) return;
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = menu.classList.contains('!opacity-100');
+                    document.querySelectorAll('header nav .relative.group div.absolute').forEach(m => {
+                        m.classList.remove('!opacity-100', '!visible');
+                    });
+                    if (!isOpen) {
+                        menu.classList.add('!opacity-100', '!visible');
+                    }
+                });
+            });
+            document.addEventListener('click', () => {
+                document.querySelectorAll('header nav .relative.group div.absolute').forEach(m => {
+                    m.classList.remove('!opacity-100', '!visible');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

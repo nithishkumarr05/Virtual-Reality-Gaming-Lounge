@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>404 | Page Not Found — VR Galaxy Gaming Lounge</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎮%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+    <meta name="description" content="Oops! This page could not be found. Return to VR Galaxy for immersive virtual reality gaming.">
+
+    <!-- Tailwind CSS + Fonts -->
+     <script src="tailwind.js"></script>
+
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        html, body { overflow-x: hidden; max-width: 100%; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #050510;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=2070&auto=format');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(5, 5, 16, 0.95) 0%, rgba(11, 12, 27, 0.94) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .error-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .error-card {
+            background: rgba(11, 12, 27, 0.85);
+            backdrop-filter: blur(16px);
+            border-radius: clamp(24px, 4vw, 40px);
+            padding: clamp(20px, 4vh, 48px) clamp(16px, 4vw, 36px);
+            text-align: center;
+            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(3deg); }
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.22; }
+            90% { opacity: 0.22; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .animate-fade-up { animation: fadeInUp 0.8s ease-out forwards; }
+
+        .code-404 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(60px, 15vh, 130px);
+            font-weight: 800;
+            background: linear-gradient(135deg, #22D3EE 0%, #8B5CF6 50%, #F43F5E 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            letter-spacing: -4px;
+            font-style: italic;
+        }
+
+        .main-icon {
+            font-size: clamp(40px, 8vh, 70px);
+            display: inline-block;
+            animation: floatIcon 3s ease-in-out infinite;
+            color: #22D3EE;
+        }
+
+        .title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(18px, 4vh, 28px);
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-top: clamp(8px, 2vh, 16px);
+            margin-bottom: clamp(6px, 1.5vh, 12px);
+        }
+
+        .message {
+            color: #94A3B8;
+            font-size: clamp(12px, 2vh, 15px);
+            line-height: 1.6;
+            max-width: 400px;
+            margin: 0 auto clamp(12px, 3vh, 28px) auto;
+        }
+
+        .button-group {
+            display: flex;
+            gap: clamp(8px, 2vw, 14px);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: clamp(12px, 3vh, 32px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+            color: #FFFFFF;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.8);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #22D3EE;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid #22D3EE;
+            transition: all 0.25s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(34, 211, 238, 0.1);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+        }
+
+        .suggestion-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: clamp(10px, 2vw, 20px);
+            margin-top: clamp(12px, 2vh, 20px);
+            padding-top: clamp(12px, 2vh, 20px);
+            border-top: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .suggestion-links a {
+            color: #22D3EE;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: color 0.2s;
+        }
+
+        .suggestion-links a:hover {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: fixed;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp 14s infinite linear;
+            opacity: 0;
+            color: rgba(139, 92, 246, 0.3);
+        }
+
+        .star-element {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation: starTwinkle 2.4s ease-in-out infinite;
+            color: rgba(34, 211, 238, 0.4);
+            font-size: 14px;
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .btn-primary i,
+        [dir="rtl"] .btn-secondary i {
+            transform: scaleX(-1);
+        }
+
+        /* Responsive */
+        @media (max-width: 550px) {
+            .btn-primary, .btn-secondary { padding: 10px 18px; font-size: 10px; }
+            .suggestion-links a { font-size: 9.5px; }
+        }
+
+        @media (max-width: 400px) {
+            .btn-primary, .btn-secondary { padding: 8px 16px; font-size: 9px; }
+        }
+
+        @media (max-height: 600px) {
+            .main-icon { display: none; }
+            .message { display: none; }
+            .code-404 { font-size: clamp(50px, 12vh, 90px); }
+        }
+
+        @media (max-height: 480px) {
+            .error-card { padding: 12px 16px; border-radius: 20px; }
+            .code-404 { font-size: 60px; }
+            .title { font-size: 16px; margin-top: 4px; }
+            .button-group { margin-bottom: 8px; }
+            .suggestion-links { margin-top: 8px; padding-top: 8px; }
+        }
+
+        .search-hint {
+            margin-top: clamp(10px, 2vh, 20px);
+            font-size: clamp(9px, 2vh, 11px);
+            color: #94A3B8;
+        }
+
+        .search-hint a {
+            color: #22D3EE;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .search-hint a:hover { text-decoration: underline; }
+    
+        html:not(.dark) body {
+            background-color: #F8FAFC !important;
+            color: #0F172A !important;
+        }
+        html:not(.dark) .error-code {
+            color: #0F172A !important;
+        }
+        html:not(.dark) .error-title {
+            color: #0F172A !important;
+        }
+        html:not(.dark) .error-desc {
+            color: #64748B !important;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating decorative elements (gaming icons) -->
+    <div class="floating-element" style="left: 5%; animation-duration: 14s; animation-delay: 0s;"><i class="fas fa-gamepad"></i></div>
+    <div class="floating-element" style="left: 15%; animation-duration: 18s; animation-delay: 2s;"><i class="fas fa-vr-cardboard"></i></div>
+    <div class="floating-element" style="left: 30%; animation-duration: 16s; animation-delay: 4s;"><i class="fas fa-headset"></i></div>
+    <div class="floating-element" style="left: 55%; animation-duration: 20s; animation-delay: 1s;"><i class="fas fa-ghost"></i></div>
+    <div class="floating-element" style="left: 70%; animation-duration: 15s; animation-delay: 3s;"><i class="fas fa-rocket"></i></div>
+    <div class="floating-element" style="left: 85%; animation-duration: 22s; animation-delay: 5s;"><i class="fas fa-dice-d20"></i></div>
+    <div class="floating-element" style="left: 92%; animation-duration: 17s; animation-delay: 2s;"><i class="fas fa-trophy"></i></div>
+    <div class="floating-element" style="left: 42%; animation-duration: 19s; animation-delay: 6s;"><i class="fas fa-crosshairs"></i></div>
+
+    <!-- Twinkling stars -->
+    <div class="star-element" style="top: 8%; left: 8%; animation-delay: 0.5s;"><i class="fas fa-star"></i></div>
+    <div class="star-element" style="top: 15%; right: 12%; animation-delay: 1.2s;"><i class="fas fa-star"></i></div>
+    <div class="star-element" style="top: 70%; left: 20%; animation-delay: 0.8s;"><i class="fas fa-star"></i></div>
+    <div class="star-element" style="bottom: 20%; right: 25%; animation-delay: 1.8s;"><i class="fas fa-star"></i></div>
+    <div class="star-element" style="top: 45%; right: 8%; animation-delay: 0.3s;"><i class="fas fa-star"></i></div>
+    <div class="star-element" style="bottom: 35%; left: 10%; animation-delay: 2.0s;"><i class="fas fa-star"></i></div>
+
+    <div class="error-container">
+        <div class="error-card animate-fade-up">
+            <!-- Brand mark -->
+            <div class="flex justify-center mb-6 w-full">
+                <a href="index.html" class="flex items-center gap-3 group" style="text-decoration: none;">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform shrink-0" style="background:linear-gradient(135deg,#8B5CF6,#22D3EE);">
+                        <i class="fas fa-vr-cardboard text-xl text-white"></i>
+                    </div>
+                    <div class="flex flex-col text-left leading-none">
+                        <span class="font-display text-xl font-bold tracking-wider text-white">VR <span class="text-[#22D3EE]">GALAXY</span></span>
+                        <span class="text-[9px] tracking-widest uppercase font-semibold text-vr-muted mt-0.5">Gaming Lounge</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Animated Main Icon -->
+            <div class="main-icon">
+                <i class="fas fa-gamepad"></i>
+            </div>
+
+            <!-- 404 Code -->
+            <div class="code-404">
+                404
+            </div>
+
+            <!-- Error Title -->
+            <h1 class="title">
+                This Level Hasn't Been Unlocked
+            </h1>
+
+            <!-- Error Message -->
+            <p class="message">
+                The page you're looking for doesn't exist or has been moved to another dimension. Let's warp you back to the games, bookings, and experiences at VR Galaxy.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <a href="index.html" class="btn-primary">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <a href="contact.html" class="btn-secondary">
+                    <i class="fas fa-headset"></i> Contact Us
+                </a>
+            </div>
+
+            <!-- Helpful Quick Links -->
+            <div class="suggestion-links">
+                <a href="about.html">About Us</a>
+                <a href="games.html">Games Library</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign Up</a>
+            </div>
+
+            <!-- Search hint -->
+            <div class="search-hint">
+                <i class="fas fa-search"></i> Need help finding something? <a href="contact.html">Reach out to our team</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Check for saved RTL preference
+            const savedDir = localStorage.getItem('direction') || localStorage.getItem('dir') || localStorage.getItem('language');
+            if (savedDir === 'rtl') {
+                document.documentElement.setAttribute('dir', 'rtl');
+            }
+
+            // Check for saved theme preference (Default is dark for VR theme)
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+            } else {
+                document.documentElement.classList.add('dark');
+            }
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'h' || e.key === 'H') window.location.href = 'index.html';
+                if (e.key === 'c' || e.key === 'C') window.location.href = 'contact.html';
+                if (e.key === 'a' || e.key === 'A') window.location.href = 'about.html';
+                if (e.key === 'g' || e.key === 'G') window.location.href = 'games.html';
+                if (e.key === 'p' || e.key === 'P') window.location.href = 'pricing.html';
+            });
+        })();
+    </script>
+</body>
+
+</html>

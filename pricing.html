@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html data-theme="dark" lang="en" class="scroll-smooth dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Pricing & Booking | VR Galaxy – Virtual Reality Gaming Lounge</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎮%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+    <meta name="description" content="Choose your VR gaming experience at VR Galaxy. Explore hourly plans, memberships, and group packages.">
+
+    <!-- Tailwind CSS + Fonts -->
+     <script src="tailwind.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'vr': {
+                            'dark': '#050510',
+                            'panel': '#0B0C1B',
+                            'primary': '#8B5CF6',
+                            'secondary': '#22D3EE',
+                            'accent': '#F43F5E',
+                            'text': '#F8FAFC',
+                            'muted': '#94A3B8',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Orbitron', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+                        pulseGlow: { '0%, 100%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.4)' }, '50%': { boxShadow: '0 0 40px rgba(139, 92, 246, 0.8)' } },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050510;
+            color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        body::-webkit-scrollbar { width: 8px; }
+        body::-webkit-scrollbar-track { background: #0B0C1B; }
+        body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8B5CF6, #22D3EE); border-radius: 10px; }
+
+        .font-display { font-family: 'Orbitron', sans-serif; }
+        
+        .text-gradient {
+            background: linear-gradient(to right, #22D3EE, #8B5CF6, #F43F5E);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .neon-border {
+            position: relative;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        .neon-border:hover {
+            border-color: #22D3EE;
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+        }
+
+        .glass-panel {
+            background: rgba(11, 12, 27, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+            border: 2px solid transparent;
+            color: white;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.7);
+        }
+
+        .btn-outline {
+            border: 2px solid #22D3EE;
+            color: #22D3EE;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover {
+            background: rgba(34, 211, 238, 0.1);
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+        }
+
+        .nav-link { position: relative; color: #94A3B8; transition: color 0.3s; }
+        .nav-link:hover, .nav-link.active { color: #22D3EE; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: #22D3EE; transition: width 0.3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        [dir="rtl"] .nav-link::after { left: auto; right: 0; }
+
+        .hero-bg {
+            background: radial-gradient(circle at 50% 50%, #0B0C1B 0%, #050510 100%);
+            position: relative;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(34, 211, 238, 0.15) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        /* Pricing Card Hover */
+        .price-card {
+            background: rgba(11, 12, 27, 0.7);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 1.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .price-card:hover {
+            transform: translateY(-8px);
+            border-color: #22D3EE;
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.15);
+        }
+        .price-card.featured {
+            border: 2px solid #8B5CF6;
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.15) 0%, rgba(11, 12, 27, 0.9) 100%);
+        }
+        
+        .featured-ribbon {
+            position: absolute;
+            top: 20px;
+            right: -38px;
+            background: linear-gradient(135deg, #F43F5E, #8B5CF6);
+            color: #FFFFFF !important;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.4rem 2rem;
+            transform: rotate(45deg);
+            width: 155px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            color: #22D3EE;
+            transition: all 0.3s;
+        }
+
+        [dir="rtl"] .featured-ribbon {
+            right: auto;
+            left: -38px;
+            transform: rotate(-45deg);
+        }
+
+        [dir="rtl"] .fa-arrow-right { transform: scaleX(-1); }
+
+        [dir="rtl"] .fa-chevron-right { transform: scaleX(-1); }
+
+        .mobile-drawer {
+            left: 0;
+            right: auto;
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-drawer.open { transform: translateX(0); }
+        [dir="rtl"] .mobile-drawer {
+            left: auto !important;
+            right: 0 !important;
+            transform: translateX(100%);
+            border-right: none !important;
+            border-left: 1px solid rgba(139, 92, 246, 0.3) !important;
+        }
+        [dir="rtl"] .mobile-drawer.open { transform: translateX(0); }
+
+        [dir="rtl"] .group .absolute.left-0 {
+            left: auto;
+            right: 0;
+        }
+        [dir="rtl"] .group .absolute.right-0 {
+            right: auto;
+            left: 0;
+        }
+    
+        /* ================= LIGHT THEME STYLES ================= */
+        html:not(.dark) {
+            color-scheme: light;
+        }
+        html:not(.dark) body {
+            background-color: #F8FAFC !important;
+            color: #0F172A !important;
+        }
+        html:not(.dark) .bg-vr-dark {
+            background-color: #F8FAFC !important;
+        }
+        html:not(.dark) .bg-vr-panel {
+            background-color: #FFFFFF !important;
+            border-color: rgba(139, 92, 246, 0.15) !important;
+            box-shadow: 0 4px 20px -2px rgba(139, 92, 246, 0.08) !important;
+        }
+        html:not(.dark) .glass-panel {
+            background: rgba(255, 255, 255, 0.9) !important;
+            border-color: rgba(139, 92, 246, 0.15) !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
+        }
+        html:not(.dark) header {
+            background-color: rgba(255, 255, 255, 0.92) !important;
+            border-color: rgba(139, 92, 246, 0.15) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
+        }
+        html:not(.dark) .hero-bg {
+            background: radial-gradient(circle at 50% 50%, #EDE9FE 0%, #F8FAFC 100%) !important;
+        }
+        html:not(.dark) .hero-bg::before {
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(34, 211, 238, 0.08) 0%, transparent 40%) !important;
+        }
+        html:not(.dark) .hero-bg::after {
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.06) 1px, transparent 1px) !important;
+        }
+        html:not(.dark) h1:not([class*="bg-gradient"] *):not(.btn-primary *),
+        html:not(.dark) h2:not([class*="bg-gradient"] *):not(.btn-primary *),
+        html:not(.dark) h3:not([class*="bg-gradient"] *):not(.btn-primary *),
+        html:not(.dark) h4:not([class*="bg-gradient"] *):not(.btn-primary *),
+        html:not(.dark) h5:not([class*="bg-gradient"] *):not(.btn-primary *),
+        html:not(.dark) h6:not([class*="bg-gradient"] *):not(.btn-primary *) {
+            color: #0F172A !important;
+        }
+        html:not(.dark) .text-white:not(.btn-primary):not(.btn-primary *):not([class*="bg-gradient"]):not([class*="bg-gradient"] *):not([style*="background:linear-gradient"]):not([style*="background: linear-gradient"]):not([style*="background:linear-gradient"] *):not([style*="background: linear-gradient"] *):not(.status-badge) {
+            color: #0F172A !important;
+        }
+        html:not(.dark) .text-vr-muted {
+            color: #475569 !important;
+        }
+        html:not(.dark) .text-vr-secondary:not(header .text-vr-secondary):not(#drawerContent .text-vr-secondary):not(footer .text-vr-secondary),
+        html:not(.dark) .feature-icon:not([style*="color"]) {
+            color: #0891B2 !important;
+        }
+        html:not(.dark) .btn-outline {
+            border-color: #0891B2 !important;
+            color: #0891B2 !important;
+        }
+        html:not(.dark) .btn-outline:hover {
+            background: rgba(8, 145, 178, 0.1) !important;
+            box-shadow: 0 0 15px rgba(8, 145, 178, 0.25) !important;
+        }
+        html:not(.dark) .price-card {
+            background: #FFFFFF !important;
+            border-color: rgba(139, 92, 246, 0.2) !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06) !important;
+        }
+        html:not(.dark) .price-card:hover {
+            border-color: #0891B2 !important;
+            box-shadow: 0 15px 30px -5px rgba(8, 145, 178, 0.15) !important;
+        }
+        html:not(.dark) .price-card.featured {
+            background: linear-gradient(180deg, #F5F3FF 0%, #FFFFFF 100%) !important;
+            border: 2px solid #8B5CF6 !important;
+            box-shadow: 0 15px 35px -5px rgba(139, 92, 246, 0.2) !important;
+        }
+        html:not(.dark) .offer-card.offer-primary {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, #FFFFFF 100%) !important;
+        }
+        html:not(.dark) .offer-card.offer-secondary {
+            background: linear-gradient(135deg, rgba(8, 145, 178, 0.12) 0%, #FFFFFF 100%) !important;
+        }
+        html:not(.dark) .offer-card.offer-accent {
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.12) 0%, #FFFFFF 100%) !important;
+        }
+        html:not(.dark) .offer-card .text-white {
+            color: #0F172A !important;
+        }
+        html:not(.dark) .offer-card .text-vr-muted {
+            color: #475569 !important;
+        }
+        html:not(.dark) .nav-link {
+            color: #475569 !important;
+        }
+        html:not(.dark) .nav-link:hover,
+        html:not(.dark) .nav-link.active {
+            color: #7C3AED !important;
+        }
+        html:not(.dark) #themeToggle,
+        html:not(.dark) #themeToggleMobile,
+        html:not(.dark) #rtlToggle,
+        html:not(.dark) #rtlToggleMobile {
+            background-color: #F1F5F9 !important;
+            color: #7C3AED !important;
+            border: 1px solid rgba(139, 92, 246, 0.2) !important;
+        }
+        html:not(.dark) #themeToggle:hover,
+        html:not(.dark) #rtlToggle:hover {
+            background-color: #EDE9FE !important;
+        }
+        html:not(.dark) #drawerContent {
+            background-color: #FFFFFF !important;
+            border-color: rgba(139, 92, 246, 0.15) !important;
+        }
+        html:not(.dark) #drawerContent a.text-vr-muted,
+        html:not(.dark) #drawerContent button.text-vr-muted {
+            color: #475569 !important;
+        }
+        html:not(.dark) #drawerContent a.text-vr-muted:hover,
+        html:not(.dark) #drawerContent button.text-vr-muted:hover {
+            background-color: rgba(139, 92, 246, 0.08) !important;
+            color: #7C3AED !important;
+        }
+        html:not(.dark) .border-vr-primary\/20,
+        html:not(.dark) .border-vr-primary\/10,
+        html:not(.dark) .border-vr-primary\/30 {
+            border-color: rgba(139, 92, 246, 0.15) !important;
+        }
+        html:not(.dark) footer {
+            background-color: #F1F5F9 !important;
+            border-color: rgba(139, 92, 246, 0.15) !important;
+        }
+        html:not(.dark) body::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        html:not(.dark) input,
+        html:not(.dark) textarea,
+        html:not(.dark) select {
+            background-color: #FFFFFF !important;
+            color: #0F172A !important;
+            border-color: #CBD5E1 !important;
+        }
+
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-vr-dark/90 backdrop-blur-md border-b border-vr-primary/20">
+        <nav class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-105" style="background:linear-gradient(135deg,#8B5CF6,#22D3EE);">
+                        <i class="fas fa-vr-cardboard text-xl text-white"></i>
+                    </div>
+                    <div class="flex flex-col leading-none">
+                        <span class="font-display text-xl font-bold tracking-wider text-white">VR <span class="text-vr-secondary">GALAXY</span></span>
+                        <span class="text-[9px] tracking-widest uppercase font-semibold text-vr-muted mt-0.5">Gaming Lounge</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden xl:flex items-center gap-8">
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1 font-medium text-sm py-2">
+                            Home <i class="fas fa-chevron-down text-[10px]"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-40 bg-vr-panel border border-vr-primary/30 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
+                            <a href="index.html" class="block px-4 py-3 text-sm text-white hover:bg-vr-primary/20 transition">Home 1</a>
+                            <a href="home2.html" class="block px-4 py-3 text-sm text-white hover:bg-vr-primary/20 border-t border-vr-primary/10 transition">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="nav-link font-medium text-sm py-2">About</a>
+                    <a href="games.html" class="nav-link font-medium text-sm py-2">Games Library</a>
+                    <a href="pricing.html" class="nav-link active font-medium text-sm py-2">Pricing</a>
+                    <a href="contact.html" class="nav-link font-medium text-sm py-2">Contact</a>
+                    <div class="relative group">
+                        <button class="nav-link flex items-center gap-1 font-medium text-sm py-2">
+                            Dashboard <i class="fas fa-chevron-down text-[10px]"></i>
+                        </button>
+                        <div class="absolute top-full right-0 mt-2 w-40 bg-vr-panel border border-vr-primary/30 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
+                            <a href="admin.html" class="block px-4 py-3 text-sm text-white hover:bg-vr-primary/20 transition"><i class="fas fa-user-shield w-5 text-vr-primary"></i> Admin</a>
+                            <a href="customer.html" class="block px-4 py-3 text-sm text-white hover:bg-vr-primary/20 border-t border-vr-primary/10 transition"><i class="fas fa-user w-5 text-vr-secondary"></i> Customer</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="hidden xl:flex items-center gap-4">
+                    <button id="themeToggle" class="w-9 h-9 rounded-full bg-vr-panel flex items-center justify-center text-vr-secondary hover:bg-vr-primary/20 transition">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="rtlToggle" class="w-9 h-9 rounded-full bg-vr-panel flex items-center justify-center text-vr-secondary hover:bg-vr-primary/20 transition">
+                        <i class="fas fa-exchange-alt"></i>
+                    </button>
+                    <a href="login.html" class="text-sm font-semibold text-white hover:text-vr-secondary transition">Log In</a>
+                    <a href="signup.html" class="btn-primary px-5 py-2.5 rounded-full text-sm font-bold">Sign Up</a>
+                </div>
+
+                <!-- Mobile Toggle -->
+                <div class="xl:hidden flex items-center gap-2">
+                    <button id="mobileMenuBtn" class="w-10 h-10 flex items-center justify-center text-white text-xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ================= MOBILE DRAWER ================= -->
+    <div id="mobileDrawer" class="fixed inset-0 z-[100] pointer-events-none xl:hidden overflow-hidden">
+        <div id="drawerBackdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        <div id="drawerContent" class="mobile-drawer absolute top-0 left-0 h-full w-80 max-w-[85vw] bg-vr-panel shadow-2xl border-r border-vr-primary/30 overflow-y-auto">
+            <div class="p-5">
+                <div class="flex justify-between items-center mb-8">
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-105 shrink-0" style="background:linear-gradient(135deg,#8B5CF6,#22D3EE);">
+                            <i class="fas fa-vr-cardboard text-xl text-white"></i>
+                        </div>
+                        <div class="flex flex-col leading-none">
+                            <span class="font-display text-xl font-bold tracking-wider text-white">VR <span class="text-vr-secondary">GALAXY</span></span>
+                            <span class="text-[9px] tracking-widest uppercase font-semibold text-vr-muted mt-0.5">Gaming Lounge</span>
+                        </div>
+                    </a>
+                    <button id="closeDrawer" class="text-vr-muted hover:text-white transition"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                
+                <div class="space-y-2">
+                    <div>
+                        <button type="button" id="mobileHomeBtn" class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm" aria-expanded="false">
+                            <span>Home</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="mobileHomeMenu" class="hidden mt-1 ms-4 ps-3 border-s border-vr-primary/20 space-y-1">
+                            <a href="index.html" class="block px-4 py-2.5 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm">Home 1</a>
+                            <a href="home2.html" class="block px-4 py-2.5 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="block px-4 py-3 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm">About</a>
+                    <a href="games.html" class="block px-4 py-3 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm">Games Library</a>
+                    <a href="pricing.html" class="block px-4 py-3 rounded-xl bg-vr-primary/20 text-vr-secondary font-semibold text-sm">Pricing</a>
+                    <a href="contact.html" class="block px-4 py-3 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm">Contact</a>
+                    
+                    <div class="pt-4 mt-4 border-t border-vr-primary/20">
+                        <button type="button" id="mobileDashboardBtn" class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm" aria-expanded="false">
+                            <span>Dashboard</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="mobileDashboardMenu" class="hidden mt-1 ms-4 ps-3 border-s border-vr-primary/20 space-y-1">
+                            <a href="admin.html" class="block px-4 py-2.5 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm"><i class="fas fa-user-shield w-6 text-vr-primary"></i> Admin</a>
+                            <a href="customer.html" class="block px-4 py-2.5 rounded-xl text-vr-muted hover:bg-vr-primary/10 hover:text-white transition text-sm"><i class="fas fa-user w-6 text-vr-secondary"></i> Customer</a>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 mt-4 border-t border-vr-primary/20 flex flex-col gap-3">
+                        <button id="themeToggleMobile" class="flex items-center justify-between px-4 py-3 rounded-xl bg-vr-dark text-vr-muted text-sm font-medium">
+                            <span>Toggle Theme</span> <i class="fas fa-moon text-vr-secondary"></i>
+                        </button>
+                        <button id="rtlToggleMobile" class="flex items-center justify-between px-4 py-3 rounded-xl bg-vr-dark text-vr-muted text-sm font-medium">
+                            <span>Toggle RTL</span> <i class="fas fa-exchange-alt text-vr-secondary"></i>
+                        </button>
+                        <a href="login.html" class="text-center px-4 py-3 rounded-xl border border-vr-primary/30 text-white text-sm font-semibold hover:border-vr-secondary transition">Log In</a>
+                        <a href="signup.html" class="text-center btn-primary px-4 py-3 rounded-xl text-sm font-bold">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SECTION 1: HERO ================= -->
+    <section class="hero-bg relative min-h-[60vh] flex items-center pt-24 overflow-hidden">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
+            <div class="max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-vr-primary/40 bg-vr-primary/10 mb-6 backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-vr-accent animate-pulse"></span>
+                    <span class="text-xs font-bold tracking-widest uppercase text-vr-secondary">Level Up Your Fun</span>
+                </div>
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+                    Choose Your <br>
+                    <span class="text-gradient">Gaming Experience.</span>
+                </h1>
+                <p class="text-vr-muted text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+                    Transparent pricing, no hidden fees. Whether you're flying solo or bringing the whole squad, we have a plan that fits.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECTION 2: VR POD BOOKING PACKAGES ================= -->
+    <section class="py-20 bg-vr-dark border-t border-vr-primary/10">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-vr-primary text-xs font-bold tracking-[0.2em] uppercase block mb-3">Pick Your Station</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4">VR Pod Booking Packages</h2>
+                <p class="text-vr-muted">Reserve a private pod for ultimate immersion and comfort.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                <!-- Pod 1 -->
+                <div class="price-card p-8 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 rounded-full flex items-center justify-center bg-vr-secondary/10 mb-4">
+                        <i class="fas fa-user feature-icon text-2xl"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white mb-2">Solo Pod</h3>
+                    <p class="text-xs text-vr-muted mb-6">Perfect for lone wolves.</p>
+                    <div class="text-4xl font-black text-white mb-1">$25<span class="text-sm font-normal text-vr-muted">/hr</span></div>
+                    <p class="text-[10px] uppercase tracking-widest text-vr-primary font-bold mb-6">1 Player</p>
+                    <ul class="space-y-3 text-sm text-vr-muted w-full text-left mb-8 flex-grow">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-vr-secondary"></i> Private VR Pod</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-vr-secondary"></i> 50+ Games</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-vr-secondary"></i> Free Soda</li>
+                    </ul>
+                    <button class="btn-outline w-full py-3 rounded-xl font-bold text-sm">Book Solo</button>
+                </div>
+
+                <!-- Pod 2 (Featured) -->
+                <div class="price-card featured p-8 flex flex-col items-center text-center">
+                    <div class="featured-ribbon">Best Value</div>
+                    <div class="w-14 h-14 rounded-full flex items-center justify-center bg-vr-primary/20 mb-4">
+                        <i class="fas fa-user-group feature-icon text-2xl" style="color: #8B5CF6;"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white mb-2">Duo Pod</h3>
+                    <p class="text-xs text-vr-muted mb-6">Bring a friend or partner.</p>
+                    <div class="text-4xl font-black text-white mb-1">$40<span class="text-sm font-normal text-vr-muted">/hr</span></div>
+                    <p class="text-[10px] uppercase tracking-widest text-vr-secondary font-bold mb-6">2 Players</p>
+                    <ul class="space-y-3 text-sm text-vr-muted w-full text-left mb-8 flex-grow">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-vr-secondary"></i> 2 VR Stations</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-vr-secondary"></i> Private Lounge</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-vr-secondary"></i> 2 Free Drinks</li>
+                    </ul>
+                    <button class="btn-primary w-full py-3 rounded-xl font-bold text-sm">Book Duo</button>
+                </div>
+
+                <!-- Pod 3 -->
+                <div class="price-card p-8 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 rounded-full flex items-center justify-center bg-vr-accent/10 mb-4">
+                        <i class="fas fa-users feature-icon text-2xl" style="color: #F43F5E;"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white mb-2">Squad Pod</h3>
+                    <p class="text-xs text-vr-muted mb-6">For the whole crew.</p>
+                    <div class="text-4xl font-black text-white mb-1">$80<span class="text-sm font-normal text-vr-muted">/hr</span></div>
+                    <p class="text-[10px] uppercase tracking-widest text-vr-accent font-bold mb-6">4 Players</p>
+                    <ul class="space-y-3 text-sm text-vr-muted w-full text-left mb-8 flex-grow">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-vr-secondary"></i> 4 VR Stations</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-vr-secondary"></i> Party Room</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-vr-secondary"></i> Unlimited Drinks</li>
+                    </ul>
+                    <button class="btn-outline w-full py-3 rounded-xl font-bold text-sm">Book Squad</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECTION 3: HOURLY GAMING PLANS ================= -->
+    <section class="py-20 bg-vr-panel border-t border-vr-primary/10">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-vr-secondary text-xs font-bold tracking-[0.2em] uppercase block mb-3">Pay As You Play</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4">Hourly Gaming Plans</h2>
+                <p class="text-vr-muted">No commitment. Just drop in and play.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Plan 1 -->
+                <div class="glass-panel p-6 rounded-2xl border border-vr-primary/20 text-center hover:border-vr-secondary transition-colors">
+                    <p class="font-display font-bold text-lg text-white">30 Mins</p>
+                    <p class="text-3xl font-black text-vr-secondary my-2">$15</p>
+                    <p class="text-xs text-vr-muted">Quick blast</p>
+                </div>
+                <!-- Plan 2 -->
+                <div class="glass-panel p-6 rounded-2xl border border-vr-primary/20 text-center hover:border-vr-secondary transition-colors">
+                    <p class="font-display font-bold text-lg text-white">1 Hour</p>
+                    <p class="text-3xl font-black text-vr-secondary my-2">$25</p>
+                    <p class="text-xs text-vr-muted">Standard session</p>
+                </div>
+                <!-- Plan 3 -->
+                <div class="glass-panel p-6 rounded-2xl border border-vr-primary/20 text-center hover:border-vr-secondary transition-colors">
+                    <p class="font-display font-bold text-lg text-white">2 Hours</p>
+                    <p class="text-3xl font-black text-vr-secondary my-2">$45</p>
+                    <p class="text-xs text-vr-muted">Save $5</p>
+                </div>
+                <!-- Plan 4 -->
+                <div class="glass-panel p-6 rounded-2xl border border-vr-primary/20 text-center hover:border-vr-secondary transition-colors">
+                    <p class="font-display font-bold text-lg text-white">3 Hours</p>
+                    <p class="text-3xl font-black text-vr-secondary my-2">$60</p>
+                    <p class="text-xs text-vr-muted">Save $15</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECTION 4: TIME BUNDLES & MEMBERSHIPS ================= -->
+    <section class="py-20 bg-vr-dark border-t border-vr-primary/10">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-vr-accent text-xs font-bold tracking-[0.2em] uppercase block mb-3">Commit & Save</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4">Time Bundles & Memberships</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
+                <!-- Bundle -->
+                <div class="glass-panel p-8 rounded-3xl border border-vr-primary/30 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-vr-secondary/10 flex items-center justify-center text-vr-secondary shrink-0">
+                            <i class="fas fa-clock text-xl"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-white">10-Hour Bundle</h3>
+                    </div>
+                    <p class="text-vr-muted text-sm mb-6 flex-grow">Prepay for 10 hours of VR gaming and use them whenever you want. Valid for 6 months.</p>
+                    <div class="text-3xl font-black text-white mb-6">$199 <span class="text-sm font-normal text-vr-muted line-through ml-2">$250</span></div>
+                    <button class="btn-outline w-full py-3 rounded-xl font-bold text-sm">Buy Bundle</button>
+                </div>
+
+                <!-- Membership -->
+                <div class="price-card featured p-8 flex flex-col h-full">
+                    <div class="featured-ribbon">Most Popular</div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-vr-primary/20 flex items-center justify-center text-vr-primary shrink-0">
+                            <i class="fas fa-crown text-xl" style="color: #8B5CF6;"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-white">Galaxy Pass</h3>
+                    </div>
+                    <p class="text-vr-muted text-sm mb-6 flex-grow">Unlimited access to all VR stations. Plus, bring a friend once a month for free.</p>
+                    <div class="text-3xl font-black text-white mb-6">$149<span class="text-sm font-normal text-vr-muted">/mo</span></div>
+                    <button class="btn-primary w-full py-3 rounded-xl font-bold text-sm">Get Galaxy Pass</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECTION 5: GROUP & MULTIPLAYER PACKAGES ================= -->
+    <section class="py-20 bg-vr-panel border-t border-vr-primary/10">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-vr-secondary text-xs font-bold tracking-[0.2em] uppercase block mb-3">Party Time</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4">Group & Multiplayer Packages</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                <!-- Party 1 -->
+                <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-vr-primary/20 hover:border-vr-secondary transition-colors group flex flex-col h-full">
+                    <i class="fas fa-birthday-cake text-4xl text-vr-secondary mb-4 transition-transform group-hover:scale-110 w-fit"></i>
+                    <h3 class="font-display font-bold text-lg sm:text-xl xl:text-2xl text-white mb-2 sm:whitespace-nowrap">Birthday Party Pack</h3>
+                    <p class="text-sm text-vr-muted mb-6 flex-grow">2 hours of VR for 8 players, plus a dedicated party host and a private room with decorations.</p>
+                    <div class="flex items-center justify-between border-t border-vr-primary/20 pt-6 mt-auto">
+                        <span class="text-2xl font-bold text-white">$299</span>
+                        <button class="btn-primary px-5 py-2 rounded-full text-sm font-bold">Book Party</button>
+                    </div>
+                </div>
+
+                <!-- Party 2 -->
+                <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-vr-primary/20 hover:border-vr-secondary transition-colors group flex flex-col h-full">
+                    <i class="fas fa-briefcase text-4xl text-vr-primary mb-4 transition-transform group-hover:scale-110 w-fit"></i>
+                    <h3 class="font-display font-bold text-lg sm:text-xl xl:text-2xl text-white mb-2 sm:whitespace-nowrap">Corporate Team Building</h3>
+                    <p class="text-sm text-vr-muted mb-6 flex-grow">3 hours of multiplayer VR, catering options, and a dedicated event coordinator for up to 10 people.</p>
+                    <div class="flex items-center justify-between border-t border-vr-primary/20 pt-6 mt-auto">
+                        <span class="text-2xl font-bold text-white">$499</span>
+                        <button class="btn-primary px-5 py-2 rounded-full text-sm font-bold">Enquire Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECTION 6: SPECIAL OFFERS ================= -->
+    <section class="py-20 bg-vr-dark border-t border-vr-primary/10 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-5 mix-blend-overlay"></div>
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-vr-accent text-xs font-bold tracking-[0.2em] uppercase block mb-2">Limited Time</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Special Offers & Discounts</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                <!-- Offer 1 -->
+                <div class="offer-card offer-primary bg-gradient-to-br from-vr-primary/20 to-vr-dark border border-vr-primary/30 p-6 rounded-2xl text-center">
+                    <p class="text-4xl font-black text-vr-primary mb-2">20%</p>
+                    <p class="font-bold text-white mb-2">Student Discount</p>
+                    <p class="text-xs text-vr-muted">Show a valid student ID and get 20% off any hourly plan.</p>
+                </div>
+                <!-- Offer 2 -->
+                <div class="offer-card offer-secondary bg-gradient-to-br from-vr-secondary/20 to-vr-dark border border-vr-secondary/30 p-6 rounded-2xl text-center">
+                    <p class="text-4xl font-black text-vr-secondary mb-2">TUE</p>
+                    <p class="font-bold text-white mb-2">Taco Tuesday</p>
+                    <p class="text-xs text-vr-muted">Buy 1 hour, get 1 free every Tuesday from 4pm to 8pm.</p>
+                </div>
+                <!-- Offer 3 -->
+                <div class="offer-card offer-accent bg-gradient-to-br from-vr-accent/20 to-vr-dark border border-vr-accent/30 p-6 rounded-2xl text-center">
+                    <p class="text-4xl font-black text-vr-accent mb-2">$10</p>
+                    <p class="font-bold text-white mb-2">First Timer</p>
+                    <p class="text-xs text-vr-muted">New to VR Galaxy? Get your first hour for just $10.</p>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-16 text-center">
+                <a href="contact.html" class="btn-primary px-10 py-4 rounded-full font-bold inline-flex items-center justify-center gap-2 shadow-lg">
+                    <i class="fas fa-calendar-check"></i> Book Your Experience
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-black pt-16 pb-8 border-t border-vr-primary/20 text-sm">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <a href="index.html" class="flex items-center gap-3 mb-6 group">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-105 shrink-0" style="background:linear-gradient(135deg,#8B5CF6,#22D3EE);">
+                            <i class="fas fa-vr-cardboard text-xl text-white"></i>
+                        </div>
+                        <div class="flex flex-col leading-none">
+                            <span class="font-display text-xl font-bold tracking-wider text-white">VR <span class="text-vr-secondary">GALAXY</span></span>
+                            <span class="text-[9px] tracking-widest uppercase font-semibold text-vr-muted mt-0.5">Gaming Lounge</span>
+                        </div>
+                    </a>
+                    <p class="text-vr-muted mb-6">The ultimate virtual reality gaming lounge. Immerse yourself in next-gen entertainment.</p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-9 h-9 rounded-full bg-vr-panel flex items-center justify-center text-vr-muted hover:text-vr-secondary transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-vr-panel flex items-center justify-center text-vr-muted hover:text-vr-secondary transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-vr-panel flex items-center justify-center text-vr-muted hover:text-vr-secondary transition"><i class="fab fa-twitch"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-vr-panel flex items-center justify-center text-vr-muted hover:text-vr-secondary transition"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-display font-bold text-white mb-4 uppercase tracking-wider text-xs">Explore</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-vr-muted hover:text-vr-secondary transition">Home 1</a></li>
+                        <li><a href="home2.html" class="text-vr-muted hover:text-vr-secondary transition">Home 2</a></li>
+                        <li><a href="about.html" class="text-vr-muted hover:text-vr-secondary transition">About Us</a></li>
+                        <li><a href="games.html" class="text-vr-muted hover:text-vr-secondary transition">Games Library</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display font-bold text-white mb-4 uppercase tracking-wider text-xs">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="pricing.html" class="text-vr-muted hover:text-vr-secondary transition">Pricing & Booking</a></li>
+                        <li><a href="contact.html" class="text-vr-muted hover:text-vr-secondary transition">Contact Us</a></li>
+                        <li><a href="#" class="text-vr-muted hover:text-vr-secondary transition">FAQ</a></li>
+                        <li><a href="#" class="text-vr-muted hover:text-vr-secondary transition">Safety Guidelines</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display font-bold text-white mb-4 uppercase tracking-wider text-xs">Visit Us</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 text-vr-muted">
+                            <i class="fas fa-map-marker-alt mt-1 text-vr-primary"></i>
+                            <span>42 Nebula Boulevard, <br>Cyber District, NY 10001</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-vr-muted">
+                            <i class="fas fa-clock text-vr-primary"></i>
+                            <span>Mon–Sun: 10am – 11pm</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-vr-muted">
+                            <i class="fas fa-envelope text-vr-primary"></i>
+                            <span>play@vrgalaxy.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-vr-primary/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-vr-muted">
+                <p>&copy; 2026 VR Galaxy. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+                        // Theme Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const themeToggleMobile = document.getElementById('themeToggleMobile');
+            
+            function setTheme(isDark) {
+                if (isDark) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+                [themeToggle, themeToggleMobile].forEach(btn => {
+                    if (btn) {
+                        const icon = btn.querySelector('i');
+                        if (icon) {
+                            const extra = btn.id === 'themeToggleMobile' ? ' text-vr-secondary' : '';
+                            icon.className = (isDark ? 'fas fa-sun' : 'fas fa-moon') + extra;
+                        }
+                    }
+                });
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            }
+
+            const savedTheme = localStorage.getItem('theme');
+            setTheme(savedTheme ? savedTheme === 'dark' : true);
+
+            if (themeToggle) themeToggle.addEventListener('click', () => setTheme(!document.documentElement.classList.contains('dark')));
+            if (themeToggleMobile) themeToggleMobile.addEventListener('click', () => setTheme(!document.documentElement.classList.contains('dark')));
+
+// RTL Toggle
+            const rtlToggle = document.getElementById('rtlToggle');
+            const rtlToggleMobile = document.getElementById('rtlToggleMobile');
+            
+            function setRTL(isRTL) {
+                document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+                localStorage.setItem('direction', isRTL ? 'rtl' : 'ltr');
+                localStorage.setItem('dir', isRTL ? 'rtl' : 'ltr');
+            }
+
+            const savedDir = localStorage.getItem('direction') || localStorage.getItem('dir');
+            setRTL(savedDir === 'rtl');
+
+            if (rtlToggle) rtlToggle.addEventListener('click', () => setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+            if (rtlToggleMobile) rtlToggleMobile.addEventListener('click', () => setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+
+            // Mobile Drawer
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileDrawer = document.getElementById('mobileDrawer');
+            const drawerContent = document.getElementById('drawerContent');
+            const drawerBackdrop = document.getElementById('drawerBackdrop');
+            const closeDrawer = document.getElementById('closeDrawer');
+
+            function openDrawer() {
+                mobileDrawer.classList.remove('pointer-events-none');
+                drawerContent.classList.add('open');
+                drawerBackdrop.classList.add('opacity-100', 'pointer-events-auto');
+                drawerBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function hideDrawer() {
+                drawerContent.classList.remove('open');
+                drawerBackdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                drawerBackdrop.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    mobileDrawer.classList.add('pointer-events-none');
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+
+            if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openDrawer);
+            if (closeDrawer) closeDrawer.addEventListener('click', hideDrawer);
+            if (drawerBackdrop) drawerBackdrop.addEventListener('click', hideDrawer);
+
+            // Mobile Drawer Dropdowns (Home & Dashboard)
+            function setupMobileDropdown(btnId, menuId) {
+                const btn = document.getElementById(btnId);
+                const menu = document.getElementById(menuId);
+                if (!btn || !menu) return;
+                btn.addEventListener('click', () => {
+                    const isHidden = menu.classList.toggle('hidden');
+                    btn.setAttribute('aria-expanded', String(!isHidden));
+                    const chevron = btn.querySelector('.fa-chevron-down');
+                    if (chevron) chevron.classList.toggle('rotate-180', !isHidden);
+                });
+            }
+            setupMobileDropdown('mobileHomeBtn', 'mobileHomeMenu');
+            setupMobileDropdown('mobileDashboardBtn', 'mobileDashboardMenu');
+
+            // Desktop Dropdown click toggle support
+            document.querySelectorAll('header nav .relative.group').forEach(group => {
+                const btn = group.querySelector('button.nav-link');
+                const menu = group.querySelector('div.absolute');
+                if (!btn || !menu) return;
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = menu.classList.contains('!opacity-100');
+                    document.querySelectorAll('header nav .relative.group div.absolute').forEach(m => {
+                        m.classList.remove('!opacity-100', '!visible');
+                    });
+                    if (!isOpen) {
+                        menu.classList.add('!opacity-100', '!visible');
+                    }
+                });
+            });
+            document.addEventListener('click', () => {
+                document.querySelectorAll('header nav .relative.group div.absolute').forEach(m => {
+                    m.classList.remove('!opacity-100', '!visible');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
